@@ -75,6 +75,42 @@ app.post('/', function (req, res) {
             text = "webhook case: setprivilege" + " Message: " + input_message;
             break;
         }
+        case "SetPrivilegeWithQuestion": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: SetPrivilegeWithQuestion" + " Message: " + input_message;
+            break;
+        }
+        case "UnsubscriptionWithQuestion": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: UnsubscriptionWithQuestion" + " Message: " + input_message;
+            break;
+        }
+        case "SendMessageWithQuestion": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: SendMessageWithQuestion" + " Message: " + input_message;
+            break;
+        }
+        case "ConnectedToRoomWithQuestion": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: ConnectedToRoomWithQuestion" + " Message: " + input_message;
+            break;
+        }
     }
 
     let response = {
