@@ -23,11 +23,59 @@ app.use(cookieParser());
 // app.use('/users', users);
 
 
-app.post('/createroom', function (req, res) {
-    console.log("REQUEST FROM DIALOGFLOW : /createroom");
+app.post('/', function (req, res) {
+    console.log("REQUEST FROM DIALOGFLOW : ");
     console.log(req.body);
 
-    let text = "webhook /createroom";
+    let intent_name = req.body.result.metadata.intentName;
+
+    let text;
+    switch (intent_name) {
+        case "CreateRoom": {
+            text = "webhook case: createroom";
+            break;
+        }
+        case "DeleteRoom": {
+            text = "webhook case: deleteroom";
+            break;
+        }
+        case "SendMessage": {
+            let input_message = req.body.result.parameters.any
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: sendmessage"+ " Message: " + input_message;
+            break;
+        }
+        case "ConnectedToRoom": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: connectedtoroom" + " Message: " + input_message;
+            break;
+        }
+        case "Unsubscription": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: unsubscription" + " Message: " + input_message;
+            break;
+        }
+        case "SetPrivilege": {
+            let input_message = req.body.result.parameters.any;
+            if(input_message.replace(/\s+/g, '') === ""){
+                text = "Не указано id";
+                break
+            }
+            text = "webhook case: unsubscription" + " Message: " + input_message;
+            break;
+        }
+    }
 
     let response = {
       speech: text,
