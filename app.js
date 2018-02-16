@@ -72,7 +72,7 @@ app.post('/', function (req, res) {
                 text = "Не указано id";
                 break
             }
-            text = "webhook case: unsubscription" + " Message: " + input_message;
+            text = "webhook case: setprivilege" + " Message: " + input_message;
             break;
         }
     }
